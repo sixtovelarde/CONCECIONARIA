@@ -1,0 +1,13 @@
+Supongamos que tenemos el siguiente grafo con pesos en las aristas:
+
+- Nodo A conectado con B (peso 3) y C (peso 2).
+- Nodo B conectado con A (peso 3) y C (peso 4).
+- Nodo C conectado con A (peso 2) y B (peso 4).
+
+Para calcular la Mg de cada nodo, sumaremos los pesos de las aristas conectadas a cada uno:
+
+- Mg(A) = 3 (arista con B) + 2 (arista con C) = 5
+- Mg(B) = 3 (arista con A) + 4 (arista con C) = 7
+- Mg(C) = 2 (arista con A) + 4 (arista con B) = 6
+
+En este ejemplo, el nodo B tiene la mayor Mg, lo que indica que es el nodo más importante en términos de conexiones en este grafo.

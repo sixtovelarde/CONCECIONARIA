@@ -18,7 +18,7 @@ Lista de carros vendidos:
 1. Mostrar los datos del vendedor o comprador de un carro.
 2. Agregar informacion de un carro comprado y modificar sun informacion si ha sido vendido (agregar informacion del cliente tambien)
 3. Eliminar datos de un carro o cliente.
-4. Mostrar si en la compra y venta de un carro se ha ytenido perdidas o ganancias, y cuanto es la diferencia. (Los carros no vendidos se consideran
+4. Mostrar si en la compra y venta de un carro se ha tenido perdidas o ganancias, y cuanto es la diferencia. (Los carros no vendidos se consideran
 perdidas hasta venderlos)
 */
 #include<iostream>
@@ -27,16 +27,17 @@ perdidas hasta venderlos)
 using namespace std;
 
 int main(){
-    ifstream archivo ("cars_data.txt");
+    ifstream archivo ("pruebaleer.txt");
 
-    if (!archivo.is_open()){
+    if (!archivo.is_open()) {
         cout<<"no se pudo abrir el archivo que contiene la informacion de los autos"<<endl;
         return 1;
     }
         string linea;
     while (getline(archivo, linea)){
-        cout<< linea<<endl;
+        cout<<linea<<endl;
     }
+
     archivo.close();
 
     return 0;
