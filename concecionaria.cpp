@@ -7,7 +7,7 @@ int main(){
     ifstream archivo ("pruebaleer.txt");
 
     if (! archivo.is_open()) {
-        cout<<"no se pudo abrir el archivo que contiene la informacion de los autos"<<endl;
+        cout<<"no se pudo abrir el archivo que contiene la informacion concecionaria"<<endl;
         return 1;
     }
         string linea;
