@@ -4,6 +4,7 @@
 using namespace std;
 
 int main(){
+    
     ifstream archivo ("pruebaleer.txt");
 
     if (! archivo.is_open()) {
