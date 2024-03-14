@@ -1,13 +1,22 @@
-Supongamos que tenemos el siguiente grafo con pesos en las aristas:
+Una concesionaria quiere un programa para administrar los datos de los carros usados que compra. En la reunion con los duenos estos fueron
+los requisitos que mencionaron para la primera etapa.
 
-- Nodo A conectado con B (peso 3) y C (peso 2).
-- Nodo B conectado con A (peso 3) y C (peso 4).
-- Nodo C conectado con A (peso 2) y B (peso 4).
+*Se debe de mostrar los carros comprados o vendidos a un cliente, como una lista, ejemplo:
 
-Para calcular la Mg de cada nodo, sumaremos los pesos de las aristas conectadas a cada uno:
+ carros comprados: 2
+ carros vendidos: 1
 
-- Mg(A) = 3 (arista con B) + 2 (arista con C) = 5
-- Mg(B) = 3 (arista con A) + 4 (arista con C) = 7
-- Mg(C) = 2 (arista con A) + 4 (arista con B) = 6
+Lista de carros comprados:
 
-En este ejemplo, el nodo B tiene la mayor Mg, lo que indica que es el nodo más importante en términos de conexiones en este grafo.
+ Chevrolet Optra, 2004
+ Ford Festiva, 2000
+
+Lista de carros vendidos:
+
+ Chevrolet Camaro, 2011
+
+1. Mostrar los datos del vendedor o comprador de un carro.
+2. Agregar informacion de un carro comprado y modificar sun informacion si ha sido vendido (agregar informacion del cliente tambien)
+3. Eliminar datos de un carro o cliente.
+4. Mostrar si en la compra y venta de un carro se ha tenido perdidas o ganancias, y cuanto es la diferencia. (Los carros no vendidos se consideran
+perdidas hasta venderlos)
