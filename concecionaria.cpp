@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
     
-    ifstream archivo ("pruebaleer.txt");
+    ifstream archivo ("cars_data.txt");
 
     if (! archivo.is_open()) {
         cout<<"no se pudo abrir el archivo que contiene la informacion concecionaria"<<endl;
