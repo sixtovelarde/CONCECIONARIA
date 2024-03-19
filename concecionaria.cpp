@@ -30,11 +30,41 @@ los carros no vendidos se consideran perdidas hasta venderlos.
 using namespace std;
 
 struct carro {
+    int id;
     string marca;
-    string comprador;
+    string modelo;
     int yer;
-    int precio;
-    int vendido;
+    string compradoA;
+    string vendidoA;
+    int preciovent;
+    int preciocom;
+    
+};
+
+struct cliente{
+    int id;
+    string nombre;
+    string apellido;
+    string email;
+    int edad;
+};
+
+void aggcarro(ofstream archivocar){
+    carro newcarro;
+    cout<<"id del auto (a partir de 1001)"<<endl;
+    cin>>newcarro.id;
+    cout<<"Marca del auto"<<endl;
+    cin>>newcarro.marca;
+    cout<<"Año del auto"<<endl;
+    cin>>newcarro.yer;
+    
+}
+
+void verlistacarros(ifstream archivocli){
+    carro carro;
+    int comprados = 0;
+    int vendidos =0;
+
 }
 
 int main(){
