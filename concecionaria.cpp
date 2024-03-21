@@ -65,6 +65,26 @@ void verlistacarros (ifstream& archivoleer){
     cout<<"Carros vendidos: "<<VENDIDOS<<endl;
 
 }
+//mostrar datos de un vendedor
+void mostrarVendedor(ifstream& archivoclie) {
+    string idbuscado;
+    cout << "Ingrese el ID del vendedor que desea mostrar: ";
+    cin >> idbuscado;
+
+    string linea;
+    while (getline(archivoclie, linea)) {
+        if (!archivoclie.is_open()) {
+        cerr << "Error al abrir el archivo de clientes." << endl;
+        return 1;
+    }
+    else (linea.find(idbuscado) != string::npos); {
+            cout << linea << endl;
+            return;
+        }
+    }
+
+    cout << "No se encontró ninguna persona con el ID especificado." << endl;
+}
 
 int main(){
 
@@ -73,7 +93,7 @@ int main(){
 
     if (!archivomod.is_open() || !archivoleer.is_open()) {
         cout<<"Erroro al abrir el archivo cars_data.txt"<<endl;
-        return 1;
+        return 2;
     }
     int opcion;
     cout<<"1. Agregar carro\n2. Mostrar lista de carros\n"<<endl;
@@ -81,10 +101,13 @@ int main(){
 
     switch (opcion){
         case 1:
-            aggcarro(archivomod);
+            aggcarro (archivomod);
             break;
         case 2:
-            verlistacarros(archivoleer);
+            verlistacarros (archivoleer);
+            break;
+            case 3:
+            mostrarVendedor (archivoclie);
             break;
         default:
             cout<<"Error elija otra opcion."<<endl;
@@ -93,6 +116,7 @@ int main(){
 
     archivomod.close();
     archivoleer.close();
+    archivoclie.close();
 
     return 0;
 }
