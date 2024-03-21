@@ -12,7 +12,8 @@ struct carro {
     string vendidoA;
     int preciovent;
     int preciocom;
-    
+    bool vendido;
+    string comprador;
 };
 
 struct cliente{
@@ -22,8 +23,8 @@ struct cliente{
     string email;
     int edad;
 };
-
-void aggcarro(ofstream archivocar){
+//agregar carros
+void aggcarro (ofstream& archivomod){
     carro newcarro;
     cout<<"id del auto (a partir de 1001)"<<endl;
     cin>>newcarro.id;
@@ -31,34 +32,67 @@ void aggcarro(ofstream archivocar){
     cin>>newcarro.marca;
     cout<<"Año del auto"<<endl;
     cin>>newcarro.yer;
-
+    cout<<"Comprado a (edad del comprador)"<<endl;
+    cin>>newcarro.compradoA;
+    cout<<"Vendido a (edad de la persona a la que se le vendio)"<<endl;
+    cin>>newcarro.vendidoA;
+    cout<<"Precio de venta"<<endl;
+    cin>>newcarro.preciovent;
+    cout<<"Precio de compra"<<endl;
+    cin>>newcarro.preciocom;
+    newcarro.vendido = false;
+    archivomod<<newcarro.id<<";"<<newcarro.marca<<";"<<newcarro.yer<<";"<<newcarro.compradoA<<";"<<newcarro.vendidoA<<";"<<newcarro.preciovent<<";"<<newcarro.preciocom<<endl;
 }
-
-void verlistacarros(ifstream archivocli){
+//ver lista
+void verlistacarros (ifstream& archivoleer){
     carro carro;
-    int comprados = 0;
-    int vendidos =0;
+    cliente cliente;
+    int COMPRADOS = 0;
+    int VENDIDOS = 0;
+
+    cout<<"Lista de carros:\n";
+    while (archivoleer>>carro.id>>carro.marca>>carro.yer>>carro.preciovent>>cliente.nombre>>cliente.apellido){
+        if (carro.vendido){
+            cout<<carro.id<<", "<<carro.marca<<", "<<carro.yer<<", "<<carro.preciovent<<".\n"<<"Vendido a:"<<cliente.nombre<<cliente.apellido<<"."<<endl;
+            VENDIDOS++;
+        }
+        else {
+            cout<<carro.id<<", "<<carro.marca<<", "<<carro.yer<<endl;
+            COMPRADOS++;
+        }
+    }
+    cout<<"\nCarros comprados: "<<COMPRADOS<<endl;
+    cout<<"Carros vendidos: "<<VENDIDOS<<endl;
 
 }
 
 int main(){
-    
-    ifstream archivo ("cars_data.txt");
-    string linea;
-    string texto;
-    int id,marca;
 
-    if (! archivo.is_open()) {
-        cout<<"no se pudo abrir el archivo que contiene la informacion concecionaria"<<endl;
+    ofstream archivomod("cars_data.txt", ios::app);
+    ifstream archivoleer("cars_data.txt");
+
+    if (!archivomod.is_open() || !archivoleer.is_open()) {
+        cout<<"Erroro al abrir el archivo cars_data.txt"<<endl;
         return 1;
     }
-        
-    while (getline(archivo, linea)){
-        texto=texto+linea+'\n';
-    }
-    cout<<texto<<endl;
+    int opcion;
+    cout<<"1. Agregar carro\n2. Mostrar lista de carros\n"<<endl;
+    cin>> opcion;
 
-    archivo.close();
+    switch (opcion){
+        case 1:
+            aggcarro(archivomod);
+            break;
+        case 2:
+            verlistacarros(archivoleer);
+            break;
+        default:
+            cout<<"Error elija otra opcion."<<endl;
+            break;
+    }
+
+    archivomod.close();
+    archivoleer.close();
 
     return 0;
 }
