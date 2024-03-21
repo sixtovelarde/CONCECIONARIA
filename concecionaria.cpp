@@ -41,7 +41,7 @@ void aggcarro (ofstream& archivomod){
     cout<<"Precio de compra"<<endl;
     cin>>newcarro.preciocom;
     newcarro.vendido = false;
-    archivomod<<newcarro.id<<";"<<newcarro.marca<<";"<<newcarro.yer<<";"<<newcarro.compradoA<<";"<<newcarro.vendidoA<<";"<<newcarro.preciovent<<";"<<newcarro.preciocom<<endl;
+    archivomod<<"/n"<<newcarro.id<<";"<<newcarro.marca<<";"<<newcarro.yer<<";"<<newcarro.compradoA<<";"<<newcarro.vendidoA<<";"<<newcarro.preciovent<<";"<<newcarro.preciocom<<endl;
 }
 //ver lista
 void verlistacarros (ifstream& archivoleer){
@@ -66,24 +66,21 @@ void verlistacarros (ifstream& archivoleer){
 
 }
 //mostrar datos de un vendedor
-void mostrarVendedor(ifstream& archivoclie) {
-    string idbuscado;
-    cout << "Ingrese el ID del vendedor que desea mostrar: ";
-    cin >> idbuscado;
+void vervendedor (ifstream& archivoclileer){
+    string idvendedor;
+    cout<<"ingrese Id del vendedor que desea buscar"<<endl;
+    cin>>idvendedor;
 
     string linea;
-    while (getline(archivoclie, linea)) {
-        if (!archivoclie.is_open()) {
-        cerr << "Error al abrir el archivo de clientes." << endl;
-        return 1;
-    }
-    else (linea.find(idbuscado) != string::npos); {
-            cout << linea << endl;
+    while (getline(archivoclileer, linea)){
+        if (!archivoclileer.is_open()){
+            cout<<"error al abrir el archivo de clientes"<<endl;
             return;
         }
-    }
 
-    cout << "No se encontró ninguna persona con el ID especificado." << endl;
+    }
+    cout<<"No se encontro al vendedor especificado"<<endl;
+
 }
 
 int main(){
@@ -91,23 +88,26 @@ int main(){
     ofstream archivomod("cars_data.txt", ios::app);
     ifstream archivoleer("cars_data.txt");
 
+    ofstream archivoclimod("clients.txt", ios::app);
+    ifstream archivoclileer("clients.txt");
+
     if (!archivomod.is_open() || !archivoleer.is_open()) {
         cout<<"Erroro al abrir el archivo cars_data.txt"<<endl;
-        return 2;
+        return 1;
     }
     int opcion;
-    cout<<"1. Agregar carro\n2. Mostrar lista de carros\n"<<endl;
+    cout<<"1. Agregar carro\n2. Mostrar lista de carros\n3. Mostrar informacion de un vendedor"<<endl;
     cin>> opcion;
 
     switch (opcion){
         case 1:
-            aggcarro (archivomod);
+            aggcarro(archivomod);
             break;
         case 2:
-            verlistacarros (archivoleer);
+            verlistacarros(archivoleer);
             break;
-            case 3:
-            mostrarVendedor (archivoclie);
+        case 3:
+            vervendedor(archivoclileer);
             break;
         default:
             cout<<"Error elija otra opcion."<<endl;
@@ -116,7 +116,9 @@ int main(){
 
     archivomod.close();
     archivoleer.close();
-    archivoclie.close();
+    
+    archivoclimod.close();
+    archivoclileer.close();
 
     return 0;
 }
