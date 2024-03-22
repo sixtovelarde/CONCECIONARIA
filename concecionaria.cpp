@@ -16,21 +16,14 @@ struct carro {
     string comprador;
 };
 
-struct cliente{
+struct cliente {
     int idcliente;
     string nombre;
     string apellido;
     string email;
     int edad;
 };
-//agregar cliente
-void aggcliente (ofstream& archivoclimod){
-    cliente newcliente;
-    cout<<"id del cliente (a partir de 101)"<<endl;
-    cin>>idcliente;
-    
 
-}
 //agregar carros
 void aggcarro (ofstream& archivomod){
     carro newcarro;
@@ -52,9 +45,7 @@ void aggcarro (ofstream& archivomod){
     cin>>newcarro.preciocom;
     newcarro.vendido = false;
     archivomod<<"\n"<<newcarro.id<<";"<<newcarro.marca<<";"<<newcarro.modelo<<";"<<newcarro.yer<<";"<<newcarro.compradoA<<";"<<newcarro.vendidoA<<";"<<newcarro.preciovent<<";"<<newcarro.preciocom<<endl;
-
-
-
+    cout<<"Carro agregado con exito"<<endl;
 }
 //ver lista
 void verlistacarros (ifstream& archivoleer){
@@ -91,10 +82,32 @@ void vervendedor(ifstream& archivoclileer) {
 
     string linea;
     while (getline(archivoclileer, linea)) {
-        if (linea.find(idvendedor) != string::npos) {
+        if (linea.find(idvendedor) != string::npos || linea.size() <=3) {
             cout << "Datos del vendedor:\n" << linea << endl;
         }
     }
+}
+
+//agregar cliente
+void aggcliente(ofstream& archivoclimod) {
+    cliente newcliente;
+    cout<<"id del cliente (a partir de 101)\n";
+    cin>>newcliente.idcliente;
+    cout<<"1er Nombre del cliente"<<endl;
+    cin>>newcliente.nombre;
+    cout<<"1er apellido del cliente"<<endl;
+    cin>>newcliente.apellido;
+    cout<<"ingrese Correo electronico del cliente"<<endl;
+    cin>>newcliente.email;
+    cout<<"Edad del cliente"<<endl;
+    cin>>newcliente.edad;
+    archivoclimod<<"\n"<<newcliente.idcliente<<";"<<newcliente.nombre<<";"<<newcliente.apellido<<";"<<newcliente.email<<";"<<newcliente.edad<<endl;
+    cout<<"cliente agregado con exito"<<endl;
+}
+//comparar perdidas y ganancias
+void diferenciasventas(){
+    carro carro;
+    
 }
 
 int main(){
@@ -105,12 +118,12 @@ int main(){
     ofstream archivoclimod("clients.txt", ios::app);
     ifstream archivoclileer("clients.txt");//3 buscar vendedor
 
-    if (!archivomod.is_open() || !archivoleer.is_open()) {
+    if (!archivomod.is_open() || !archivoleer.is_open() || !archivoclileer.is_open() || !archivoclimod.is_open()) {
         cout<<"Erroro al abrir el archivo cars_data.txt"<<endl;
         return 1;
     }
     int opcion;
-    cout<<"1. Agregar carro\n2. Mostrar lista de carros\n3. Mostrar informacion de un vendedor"<<endl;
+    cout<<"1. Agregar carro\n2. Mostrar lista de carros\n3. Mostrar informacion de un vendedor\n4. Agregar un cliente"<<endl;
     cin>> opcion;
 
     switch (opcion){
@@ -123,6 +136,9 @@ int main(){
         case 3:
             vervendedor(archivoclileer);
             break;
+        case 4:
+            aggcliente(archivoclimod);
+            break;
         default:
             cout<<"Error elija otra opcion."<<endl;
             break;
@@ -131,7 +147,7 @@ int main(){
     archivomod.close();//1
     archivoleer.close();//2
     
-
+    archivoclimod.close();//4
     archivoclileer.close();//3
 
     return 0;
