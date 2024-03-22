@@ -30,6 +30,8 @@ void aggcarro (ofstream& archivomod){
     cin>>newcarro.id;
     cout<<"Marca del auto"<<endl;
     cin>>newcarro.marca;
+    cout<<"Modelo del auto"<<endl;
+    cin>>newcarro.modelo;
     cout<<"Año del auto"<<endl;
     cin>>newcarro.yer;
     cout<<"Comprado a (edad del comprador)"<<endl;
@@ -41,7 +43,7 @@ void aggcarro (ofstream& archivomod){
     cout<<"Precio de compra"<<endl;
     cin>>newcarro.preciocom;
     newcarro.vendido = false;
-    archivomod<<"/n"<<newcarro.id<<";"<<newcarro.marca<<";"<<newcarro.yer<<";"<<newcarro.compradoA<<";"<<newcarro.vendidoA<<";"<<newcarro.preciovent<<";"<<newcarro.preciocom<<endl;
+    archivomod<<newcarro.id<<";"<<newcarro.marca<<";"<<newcarro.modelo<<";"<<newcarro.yer<<";"<<newcarro.compradoA<<";"<<newcarro.vendidoA<<";"<<newcarro.preciovent<<";"<<newcarro.preciocom<<endl;
 }
 //ver lista
 void verlistacarros (ifstream& archivoleer){
@@ -65,31 +67,32 @@ void verlistacarros (ifstream& archivoleer){
     cout<<"Carros vendidos: "<<VENDIDOS<<endl;
 
 }
-//mostrar datos de un vendedor
+//mostrar datos de un vendedor o comprador
 void vervendedor (ifstream& archivoclileer){
     string idvendedor;
     cout<<"ingrese Id del vendedor que desea buscar"<<endl;
     cin>>idvendedor;
 
-    string linea;
-    while (getline(archivoclileer, linea)){
-        if (!archivoclileer.is_open()){
+     if (!archivoclileer.is_open()){
             cout<<"error al abrir el archivo de clientes"<<endl;
             return;
         }
-
+    string linea;
+    while (getline(archivoclileer, linea)){
+        if (linea.find(idvendedor) != string::npos){
+            cout<<"Datos del vendedor:\n"<<linea<<endl;
+        }
     }
-    cout<<"No se encontro al vendedor especificado"<<endl;
 
 }
 
 int main(){
 
-    ofstream archivomod("cars_data.txt", ios::app);
-    ifstream archivoleer("cars_data.txt");
+    ofstream archivomod("cars_data.txt", ios::app);//1 agregar carros
+    ifstream archivoleer("cars_data.txt");//2 ver lista de carros
 
     ofstream archivoclimod("clients.txt", ios::app);
-    ifstream archivoclileer("clients.txt");
+    ifstream archivoclileer("clients.txt");//3 buscar vendedor
 
     if (!archivomod.is_open() || !archivoleer.is_open()) {
         cout<<"Erroro al abrir el archivo cars_data.txt"<<endl;
@@ -114,11 +117,11 @@ int main(){
             break;
     }
 
-    archivomod.close();
-    archivoleer.close();
+    archivomod.close();//1
+    archivoleer.close();//2
     
     archivoclimod.close();
-    archivoclileer.close();
+    archivoclileer.close();//3
 
     return 0;
 }
