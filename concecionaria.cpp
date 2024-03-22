@@ -68,22 +68,22 @@ void verlistacarros (ifstream& archivoleer){
 
 }
 //mostrar datos de un vendedor o comprador
-void vervendedor (ifstream& archivoclileer){
+void vervendedor(ifstream& archivoclileer) {
     string idvendedor;
-    cout<<"ingrese Id del vendedor que desea buscar"<<endl;
-    cin>>idvendedor;
+    cout << "Ingrese el ID del vendedor que desea buscar:\n";
+    cin >> idvendedor;
 
-     if (!archivoclileer.is_open()){
-            cout<<"error al abrir el archivo de clientes"<<endl;
-            return;
-        }
-    string linea;
-    while (getline(archivoclileer, linea)){
-        if (linea.find(idvendedor) != string::npos){
-            cout<<"Datos del vendedor:\n"<<linea<<endl;
-        }
+    if (!archivoclileer.is_open()) {
+        cout << "Error al abrir el archivo de clientes." << endl;
+        return;
     }
 
+    string linea;
+    while (getline(archivoclileer, linea)) {
+        if (linea.find(idvendedor) != string::npos) {
+            cout << "Datos del vendedor:\n" << linea << endl;
+        }
+    }
 }
 
 int main(){
