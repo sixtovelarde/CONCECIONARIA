@@ -17,12 +17,20 @@ struct carro {
 };
 
 struct cliente{
-    int id;
+    int idcliente;
     string nombre;
     string apellido;
     string email;
     int edad;
 };
+//agregar cliente
+void aggcliente (ofstream& archivoclimod){
+    cliente newcliente;
+    cout<<"id del cliente (a partir de 101)"<<endl;
+    cin>>idcliente;
+    
+
+}
 //agregar carros
 void aggcarro (ofstream& archivomod){
     carro newcarro;
@@ -46,7 +54,7 @@ void aggcarro (ofstream& archivomod){
     archivomod<<"\n"<<newcarro.id<<";"<<newcarro.marca<<";"<<newcarro.modelo<<";"<<newcarro.yer<<";"<<newcarro.compradoA<<";"<<newcarro.vendidoA<<";"<<newcarro.preciovent<<";"<<newcarro.preciocom<<endl;
 
 
-    
+
 }
 //ver lista
 void verlistacarros (ifstream& archivoleer){
@@ -123,7 +131,7 @@ int main(){
     archivomod.close();//1
     archivoleer.close();//2
     
-    archivoclimod.close();
+
     archivoclileer.close();//3
 
     return 0;
