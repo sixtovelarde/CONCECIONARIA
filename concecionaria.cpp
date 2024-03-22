@@ -43,7 +43,10 @@ void aggcarro (ofstream& archivomod){
     cout<<"Precio de compra"<<endl;
     cin>>newcarro.preciocom;
     newcarro.vendido = false;
-    archivomod<<newcarro.id<<";"<<newcarro.marca<<";"<<newcarro.modelo<<";"<<newcarro.yer<<";"<<newcarro.compradoA<<";"<<newcarro.vendidoA<<";"<<newcarro.preciovent<<";"<<newcarro.preciocom<<endl;
+    archivomod<<"\n"<<newcarro.id<<";"<<newcarro.marca<<";"<<newcarro.modelo<<";"<<newcarro.yer<<";"<<newcarro.compradoA<<";"<<newcarro.vendidoA<<";"<<newcarro.preciovent<<";"<<newcarro.preciocom<<endl;
+
+
+    
 }
 //ver lista
 void verlistacarros (ifstream& archivoleer){
