@@ -82,7 +82,7 @@ void vervendedor(ifstream& archivoclileer) {
 
     string linea;
     while (getline(archivoclileer, linea)) {
-        if (linea.find(idvendedor) != string::npos || linea.size() <=3) {
+        if (linea.find(idvendedor) != string::npos || linea.size() >=3) {
             cout << "Datos del vendedor:\n" << linea << endl;
         }
     }
@@ -112,14 +112,14 @@ void diferenciasventas(){
 
 int main(){
 
-    ofstream archivomod("cars_data.txt", ios::app);//1 agregar carros
-    ifstream archivoleer("cars_data.txt");//2 ver lista de carros
+    ofstream archivomod("cars_data.csv", ios::app);//1 agregar carros
+    ifstream archivoleer("cars_data.csv");//2 ver lista de carros
 
-    ofstream archivoclimod("clients.txt", ios::app);
-    ifstream archivoclileer("clients.txt");//3 buscar vendedor
+    ofstream archivoclimod("clients.csv", ios::app);
+    ifstream archivoclileer("clients.csv");//3 buscar vendedor
 
     if (!archivomod.is_open() || !archivoleer.is_open() || !archivoclileer.is_open() || !archivoclimod.is_open()) {
-        cout<<"Erroro al abrir el archivo cars_data.txt"<<endl;
+        cout<<"Error al abrir el archivo cars_data.csv"<<endl;
         return 1;
     }
     int opcion;
